@@ -6,7 +6,7 @@
 /**
  * @group Core
  */
-public with sharing class fflib_InOrder extends fflib_MethodVerifier
+global with sharing class fflib_InOrder extends fflib_MethodVerifier
 {
 	private final List<Object> unorderedMockInstances;
 	private Integer idxMethodCall = 0;
@@ -25,7 +25,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * @param mocks The apex mock object instance.
 	 * @param unorderedMockInstances One or more mock implementation classes (listed in any order), whose ordered method calls require verification.
 	 */
-	public fflib_InOrder(fflib_ApexMocks mocks, List<Object> unorderedMockInstances)
+	global fflib_InOrder(fflib_ApexMocks mocks, List<Object> unorderedMockInstances)
 	{
 		this.unorderedMockInstances = unorderedMockInstances;
 		this.mocks = mocks;
@@ -40,7 +40,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * @param verificationMode Defines the constraints for performing the verification (e.g. the minimum and maximum expected invocation counts).
 	 * @return The mock object instance.
 	 */
-	public Object verify(Object mockInstance, fflib_VerificationMode verificationMode)
+	global Object verify(Object mockInstance, fflib_VerificationMode verificationMode)
 	{
 		mocks.setOrderedVerifier(this);
 		return mocks.verify(mockInstance, verificationMode);
@@ -52,7 +52,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * @param mockInstance The mock object instance.
 	 * @return The mock object instance.
 	 */
-	public Object verify(Object mockInstance)
+	global Object verify(Object mockInstance)
 	{
 		mocks.setOrderedVerifier(this);
 		return mocks.verify(mockInstance);
@@ -66,7 +66,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * @param times The number of times you expect the method to have been called.
 	 * @return The mock object instance.
 	 */
-	public Object verify(Object mockInstance, Integer times)
+	global Object verify(Object mockInstance, Integer times)
 	{
 		mocks.setOrderedVerifier(this);
 		return mocks.verify(mockInstance, times);
@@ -76,7 +76,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * Verify that after the last successful verified method no more interactions happened on the inOrderMock instance.
 	 * @throws Exception with message to help to identify the last method called.
 	 */
-	public void verifyNoMoreInteractions()
+	global void verifyNoMoreInteractions()
 	{
 		if(idxMethodCall == 0)
 		{
@@ -97,7 +97,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * Verify that no interactions at all happened on the inOrderMock instance.
 	 * @throws Exception with message.
 	 */
-	public void verifyNoInteractions()
+	global void verifyNoInteractions()
 	{
 		if(hasNextInteraction(unorderedMockInstances, 0))
 		{
@@ -114,7 +114,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * @param methodArg The arguments of the method that needs to be verified.
 	 * @param verificationMode The verification mode that holds the setting about how the verification should be performed.
 	 */
-	protected override void verify(
+	global override void verify(
 		fflib_QualifiedMethod qm,
 		fflib_MethodArgValues methodArg,
 		fflib_VerificationMode verificationMode)
@@ -339,7 +339,7 @@ public with sharing class fflib_InOrder extends fflib_MethodVerifier
 	 * @param verificationMode The verification mode that have to been verified.
 	 * @throws Exception with message for the fflib_VerificationMode not implemented.
 	 */
-	protected override void validateMode(fflib_VerificationMode verificationMode)
+	global override void validateMode(fflib_VerificationMode verificationMode)
 	{
 		if(notImplementedMethods.contains(verificationMode.Method))
 		{

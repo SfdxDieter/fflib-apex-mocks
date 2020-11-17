@@ -6,14 +6,14 @@
  *	This class implements the actual verification.
  *	@group Core
  */
-public abstract class fflib_MethodVerifier
+global abstract class fflib_MethodVerifier
 {
 	/**
 	 * Verify a method was called on a mock object.
 	 * @param mockInvocation The object holding all the data of the invocation, like the method and arguments and the mock instance.
 	 * @param verificationMode The verification mode that holds the setting about how the verification should be performed.
 	 */
-	public void verifyMethodCall(fflib_InvocationOnMock mockInvocation, fflib_VerificationMode verificationMode)
+	global void verifyMethodCall(fflib_InvocationOnMock mockInvocation, fflib_VerificationMode verificationMode)
 	{
 		validateMode(verificationMode);
 
@@ -26,7 +26,7 @@ public abstract class fflib_MethodVerifier
 	 * @param methodArg The arguments of the method that needs to be verified.
 	 * @param verificationMode The verification mode that holds the setting about how the verification should be performed.
 	 */
-	protected abstract void verify(
+	global abstract void verify(
 		fflib_QualifiedMethod qm,
 		fflib_MethodArgValues methodArg,
 		fflib_VerificationMode verificationMode);
@@ -38,7 +38,7 @@ public abstract class fflib_MethodVerifier
 	 * @param verificationMode The verification mode that has to have been verified.
 	 * @throws Exception with message for the fflib_VerificationMode not implemented.
 	 */
-	protected abstract void validateMode(fflib_VerificationMode verificationMode);
+	global abstract void validateMode(fflib_VerificationMode verificationMode);
 
 	/*
 	 * Method that performs the argument capturing.

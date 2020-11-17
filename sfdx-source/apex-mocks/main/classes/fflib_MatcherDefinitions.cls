@@ -30,12 +30,12 @@
  * to construct the matcher, register the matcher and return an object of the correct type to be called in your unit test.
  * E.g. Don't construct Eq(Object toMatch), instead call fflib_Match.eq(Object toMatch).
  */
-public with sharing class fflib_MatcherDefinitions
+global with sharing class fflib_MatcherDefinitions
 {
 	/**
 	 * Connective - Enum representing the possible operators for the Combined matcher. Possible values: ALL, AT_LEAST_ONE, NONE
 	 */
-	public Enum Connective
+	global Enum Connective
 	{
 		ALL,
 		AT_LEAST_ONE,
@@ -49,7 +49,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * Combined matcher: compares the supplied argument matches one, all or none of the internal matchers
 	 */
-	public class Combined implements fflib_IMatcher
+	global class Combined implements fflib_IMatcher
 	{
 		private Connective connectiveExpression;
 		private List<fflib_IMatcher> internalMatchers;
@@ -60,13 +60,13 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param internalMatchers An ordered list of the internal matchers to be combined
 		 * @return fflib_MatcherDefinitions.Combined A new Combined instance
 		 */
-		public Combined(Connective connectiveExpression, List<fflib_IMatcher> internalMatchers)
+		global Combined(Connective connectiveExpression, List<fflib_IMatcher> internalMatchers)
 		{
 			this.connectiveExpression = validate(connectiveExpression);
 			this.internalMatchers = validate(internalMatchers);
 		}
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			for (fflib_IMatcher internalMatcher : internalMatchers)
 			{
@@ -125,7 +125,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * Eq matcher: checks if the supplied argument is equal (==) to a specified object
 	 */
-	public class Eq implements fflib_IMatcher
+	global class Eq implements fflib_IMatcher
 	{
 		private Object toMatch;
 		
@@ -134,12 +134,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The object to be compared
 		 * @return fflib_MatcherDefinitions.Eq A new Eq instance
 		 */
-		public Eq(Object toMatch)
+		global Eq(Object toMatch)
 		{
 			this.toMatch = validateNotNull(toMatch);
 		}
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return toMatch == arg;
 		}
@@ -148,7 +148,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * RefEq matcher: checks if the supplied argument is a reference to the same object (===) as a specified object
 	 */
-	public class RefEq implements fflib_IMatcher
+	global class RefEq implements fflib_IMatcher
 	{
 		private Object toMatch;
 		
@@ -157,12 +157,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The object to be compared
 		 * @return fflib_MatcherDefinitions.RefEq A new RefEq instance
 		 */
-		public RefEq(Object toMatch)
+		global RefEq(Object toMatch)
 		{
 			this.toMatch = validateNotNull(toMatch);
 		}
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return toMatch === arg;
 		}
@@ -175,9 +175,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyBoolean matcher: checks if the supplied argument is an instance of a Boolean
 	 */
-	public class AnyBoolean implements fflib_IMatcher
+	global class AnyBoolean implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Boolean;
 		}
@@ -186,9 +186,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyDate matcher: checks if the supplied argument is an instance of a Date
 	 */
-	public class AnyDate implements fflib_IMatcher
+	global class AnyDate implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Date;
 		}
@@ -197,9 +197,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyDatetime matcher: checks if the supplied argument is an instance of a Datetime
 	 */
-	public class AnyDatetime implements fflib_IMatcher
+	global class AnyDatetime implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Datetime;
 		}
@@ -208,9 +208,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyDecimal matcher: checks if the supplied argument is an instance of a Decimal
 	 */
-	public class AnyDecimal implements fflib_IMatcher
+	global class AnyDecimal implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Decimal;
 		}
@@ -219,9 +219,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyDouble matcher: checks if the supplied argument is an instance of a Double
 	 */
-	public class AnyDouble implements fflib_IMatcher
+	global class AnyDouble implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Double;
 		}
@@ -230,9 +230,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyFieldSet matcher: checks if the supplied argument is an instance of a FieldSet
 	 */
-	public class AnyFieldSet implements fflib_IMatcher
+	global class AnyFieldSet implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Schema.FieldSet;
 		}
@@ -241,9 +241,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyId matcher: checks if the supplied argument is an instance of an Id
 	 */
-	public class AnyId implements fflib_IMatcher
+	global class AnyId implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Id;
 		}
@@ -252,9 +252,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyInteger matcher: checks if the supplied argument is an instance of an Integer
 	 */
-	public class AnyInteger implements fflib_IMatcher
+	global class AnyInteger implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Integer;
 		}
@@ -263,9 +263,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyList matcher: checks if the supplied argument is an instance of a List
 	 */
-	public class AnyList implements fflib_IMatcher
+	global class AnyList implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof List<Object>;
 		}
@@ -274,9 +274,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyLong matcher: checks if the supplied argument is an instance of a Long
 	 */
-	public class AnyLong implements fflib_IMatcher
+	global class AnyLong implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof Long;
 		}
@@ -285,9 +285,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyObject matcher: checks if the supplied argument is an instance of an Object
 	 */
-	public class AnyObject implements fflib_IMatcher
+	global class AnyObject implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null;
 		}
@@ -296,9 +296,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnyString matcher: checks if the supplied argument is an instance of a String
 	 */
-	public class AnyString implements fflib_IMatcher
+	global class AnyString implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof String;
 		}
@@ -307,9 +307,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnySObject matcher: checks if the supplied argument is an instance of an SObject
 	 */
-	public class AnySObject implements fflib_IMatcher
+	global class AnySObject implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof SObject;
 		}
@@ -318,9 +318,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnySObjectField matcher: checks if the supplied argument is an instance of an SObjectField
 	 */
-	public class AnySObjectField implements fflib_IMatcher
+	global class AnySObjectField implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof SObjectField;
 		}
@@ -329,9 +329,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * AnySObjectType matcher: checks if the supplied argument is an instance of an SObjectType
 	 */
-	public class AnySObjectType implements fflib_IMatcher
+	global class AnySObjectType implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof SObjectType;
 		}
@@ -344,7 +344,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * DatetimeAfter matcher: checks if the supplied argument is after a specified datetime
 	 */
-	public class DatetimeAfter implements fflib_IMatcher
+	global class DatetimeAfter implements fflib_IMatcher
 	{
 		private Datetime fromDatetime;
 		private Boolean inclusive;
@@ -355,13 +355,13 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param inclusive Whether or not dates equal to the fromDatetime should be considered a match
 		 * @return fflib_MatcherDefinitions.DatetimeAfter A new DatetimeAfter instance
 		 */
-		public DatetimeAfter(Datetime fromDatetime, Boolean inclusive)
+		global DatetimeAfter(Datetime fromDatetime, Boolean inclusive)
 		{
 			this.fromDatetime = (Datetime)validateNotNull(fromDatetime);
 			this.inclusive = (Boolean)validateNotNull(inclusive);
 		}
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg instanceof Datetime)
 			{
@@ -376,7 +376,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * DatetimeBefore matcher: checks if the supplied argument is before a specified datetime
 	 */
-	public class DatetimeBefore implements fflib_IMatcher
+	global class DatetimeBefore implements fflib_IMatcher
 	{
 		private Datetime toDatetime;
 		private Boolean inclusive;
@@ -387,13 +387,13 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param inclusive Whether or not dates equal to the toDatetime should be considered a match
 		 * @return fflib_MatcherDefinitions.DatetimeBefore A new DatetimeBefore instance
 		 */
-		public DatetimeBefore(Datetime toDatetime, Boolean inclusive)
+		global DatetimeBefore(Datetime toDatetime, Boolean inclusive)
 		{
 			this.toDatetime = (Datetime)validateNotNull(toDatetime);
 			this.inclusive = (Boolean)validateNotNull(inclusive);
 		}
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg instanceof Datetime)
 			{
@@ -408,7 +408,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * DatetimeBetween matcher: checks if the supplied argument is between two specified datetimes
 	 */
-	public class DatetimeBetween implements fflib_IMatcher
+	global class DatetimeBetween implements fflib_IMatcher
 	{
 		private Datetime fromDatetime;
 		private Boolean inclusiveFrom;
@@ -423,7 +423,7 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param inclusiveTo Whether or not dates equal to the toDatetime should be considered a match
 		 * @return fflib_MatcherDefinitions.DatetimeBetween A new DatetimeBetween instance
 		 */
-		public DatetimeBetween(Datetime fromDatetime, Boolean inclusiveFrom, Datetime toDatetime, Boolean inclusiveTo)
+		global DatetimeBetween(Datetime fromDatetime, Boolean inclusiveFrom, Datetime toDatetime, Boolean inclusiveTo)
 		{
 			this.fromDatetime = (Datetime)validateNotNull(fromDatetime);
 			this.inclusiveFrom = (Boolean)validateNotNull(inclusiveFrom);
@@ -431,7 +431,7 @@ public with sharing class fflib_MatcherDefinitions
 			this.inclusiveTo = (Boolean)validateNotNull(inclusiveTo);
 		}
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg instanceof Datetime)
 			{
@@ -454,7 +454,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * DecimalBetween matcher: checks if the supplied argument is between two specified decimals
 	 */
-	public class DecimalBetween implements fflib_IMatcher
+	global class DecimalBetween implements fflib_IMatcher
 	{
 		private Decimal lower;
 		private Boolean inclusiveLower;
@@ -469,7 +469,7 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param inclusiveUpper Whether or not numbers equal to upper should be considered a match
 		 * @return fflib_MatcherDefinitions.DecimalBetween A new DecimalBetween instance
 		 */
-		public DecimalBetween(Decimal lower, Boolean inclusiveLower, Decimal upper, Boolean inclusiveUpper)
+		global DecimalBetween(Decimal lower, Boolean inclusiveLower, Decimal upper, Boolean inclusiveUpper)
 		{
 			this.lower = (Decimal)validateNotNull(lower);
 			this.inclusiveLower = (Boolean)validateNotNull(inclusiveLower);
@@ -477,7 +477,7 @@ public with sharing class fflib_MatcherDefinitions
 			this.inclusiveUpper = (Boolean)validateNotNull(inclusiveUpper);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof Decimal)
 			{
@@ -497,7 +497,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * DecimalLessThan matcher: checks if the supplied argument is less than a specified decimal
 	 */
-	public class DecimalLessThan implements fflib_IMatcher
+	global class DecimalLessThan implements fflib_IMatcher
 	{
 		private Decimal toMatch;
 		private Boolean inclusive;
@@ -508,13 +508,13 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param inclusive Whether or not numbers equal to toMatch should be considered a match
 		 * @return fflib_MatcherDefinitions.DecimalLessThan A new DecimalLessThan instance
 		 */
-		public DecimalLessThan(Decimal toMatch, Boolean inclusive)
+		global DecimalLessThan(Decimal toMatch, Boolean inclusive)
 		{
 			this.toMatch = (Decimal)validateNotNull(toMatch);
 			this.inclusive = (Boolean)validateNotNull(inclusive);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof Decimal)
 			{
@@ -529,7 +529,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * DecimalMoreThan matcher: checks if the supplied argument is greater than a specified decimal
 	 */
-	public class DecimalMoreThan implements fflib_IMatcher
+	global class DecimalMoreThan implements fflib_IMatcher
 	{
 		private Decimal toMatch;
 		private Boolean inclusive;
@@ -540,13 +540,13 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param inclusive Whether or not numbers equal to toMatch should be considered a match
 		 * @return fflib_MatcherDefinitions.DecimalMoreThan A new DecimalMoreThan instance
 		 */
-		public DecimalMoreThan(Decimal toMatch, Boolean inclusive)
+		global DecimalMoreThan(Decimal toMatch, Boolean inclusive)
 		{
 			this.toMatch = (Decimal)validateNotNull(toMatch);
 			this.inclusive = (Boolean)validateNotNull(inclusive);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof Decimal)
 			{
@@ -566,7 +566,7 @@ public with sharing class fflib_MatcherDefinitions
 	 * FieldSetEquivalentTo matcher: checks the supplied argument is a field set with the same field set members as a specified field set
 	 * This matcher is needed because equivalent FieldSets do not pass == checks, and we can't override equals/hashcode on FieldSets.
 	 */
-	public class FieldSetEquivalentTo implements fflib_IMatcher
+	global class FieldSetEquivalentTo implements fflib_IMatcher
 	{
 		private final Set<Schema.FieldSetMember> toMatch;
 
@@ -574,17 +574,17 @@ public with sharing class fflib_MatcherDefinitions
 		 * Dirty test-only constructor, allowing us to test this class even if there are no field sets defined in the current org.
 		 */
 		@TestVisible
-		public FieldSetEquivalentTo()
+		global FieldSetEquivalentTo()
 		{
 			this.toMatch = null;
 		}
 
-		public FieldSetEquivalentTo(Schema.FieldSet toMatch)
+		global FieldSetEquivalentTo(Schema.FieldSet toMatch)
 		{
 			this.toMatch = new Set<Schema.FieldSetMember>(((Schema.FieldSet)validateNotNull(toMatch)).getFields());
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return (toMatch != null && arg != null && arg instanceof Schema.FieldSet) ? toMatch == new Set<Schema.FieldSetMember>(((FieldSet)arg).getFields()) : false;
 		}
@@ -597,9 +597,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * IsNotNull matcher: checks the supplied argument is not null
 	 */
-	public class IsNotNull implements fflib_IMatcher
+	global class IsNotNull implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null;
 		}
@@ -608,9 +608,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * IsNull matcher: checks the supplied argument is null
 	 */
-	public class IsNull implements fflib_IMatcher
+	global class IsNull implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg == null;
 		}
@@ -623,7 +623,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * ListContains matcher: checks if the supplied argument is equal (==) to any of the elements in a specified list
 	 */
-	public class ListContains implements fflib_IMatcher
+	global class ListContains implements fflib_IMatcher
 	{
 		private Object toMatch;
 		
@@ -632,12 +632,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The list of objects to be compared
 		 * @return fflib_MatcherDefinitions.ListContains A new ListContains instance
 		 */
-		public ListContains(Object toMatch)
+		global ListContains(Object toMatch)
 		{
 			this.toMatch = toMatch;
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof List<Object>)
 			{
@@ -657,9 +657,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * ListIsEmpty matcher: checks if the supplied argument is an empty list
 	 */
-	public class ListIsEmpty implements fflib_IMatcher
+	global class ListIsEmpty implements fflib_IMatcher
 	{
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null
 				&& arg instanceof List<Object>
@@ -674,7 +674,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * SObjectOfType matcher: checks if the supplied argument has the specified SObjectType
 	 */
-	public class SObjectOfType implements fflib_IMatcher
+	global class SObjectOfType implements fflib_IMatcher
 	{
 		private Schema.SObjectType objectType;
 
@@ -683,12 +683,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param objectType The SObjectType to be compared
 		 * @return fflib_MatcherDefinitions.SObjectOfType A new SObjectOfType instance
 		 */
-		public SObjectOfType(Schema.SObjectType objectType)
+		global SObjectOfType(Schema.SObjectType objectType)
 		{
 			this.objectType = (Schema.SObjectType)validateNotNull(objectType);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof SObject)
 			{
@@ -707,7 +707,7 @@ public with sharing class fflib_MatcherDefinitions
 	 * If your matcher is mysteriously failing for your SObject record, it may be getting silent 'SObject row was retrieved via SOQL without querying
 	 * the requested field' exceptions, because you haven't queried all of the fields used in this matcher.
 	 */
-	public class SObjectWith implements fflib_IMatcher
+	global class SObjectWith implements fflib_IMatcher
 	{
 		private Map<Schema.SObjectField, Object> toMatch;
 
@@ -716,12 +716,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch A map of fields to their values to be compared. We compare each of these fields against the supplied sobject's field values.
 		 * @return fflib_MatcherDefinitions.SObjectWith A new SObjectWith instance
 		 */
-		public SObjectWith(Map<Schema.SObjectField, Object> toMatch)
+		global SObjectWith(Map<Schema.SObjectField, Object> toMatch)
 		{
 			this.toMatch = validate(toMatch);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof SObject)
 			{
@@ -772,7 +772,7 @@ public with sharing class fflib_MatcherDefinitions
 	* If your matcher is mysteriously failing for your SObject record, it may be getting silent 'SObject row was retrieved via SOQL without querying
 	* the requested field' exceptions, because you haven't queried all of the fields used in this matcher.
 	*/
-	public class SObjectsWith implements fflib_IMatcher
+	global class SObjectsWith implements fflib_IMatcher
 	{
 		private list<Map<Schema.SObjectField, Object>> toMatch;
 		private Boolean matchInOrder {
@@ -788,17 +788,17 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch A list of maps of fields to their values to be compared. We compare each of these fields against the supplied list of sobject's field values.
 		 * @return fflib_MatcherDefinitions.SObjectWith A new SObjectWith instance
 		 */
-		public SObjectsWith(list<Map<Schema.SObjectField, Object>> toMatch, Boolean matchInOrder)
+		global SObjectsWith(list<Map<Schema.SObjectField, Object>> toMatch, Boolean matchInOrder)
 		{
 			this.toMatch = validate(toMatch);
 			this.matchInOrder = matchInOrder;
 		}
-		public SObjectsWith(list<Map<Schema.SObjectField, Object>> toMatch)
+		global SObjectsWith(list<Map<Schema.SObjectField, Object>> toMatch)
 		{
 			this.toMatch = validate(toMatch);
 			this.matchInOrder = true;
 		}
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof list<SObject>)
 			{
@@ -914,7 +914,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * SObjectWithId matcher: checks if the supplied argument has the specified Id
 	 */
-	public class SObjectWithId implements fflib_IMatcher
+	global class SObjectWithId implements fflib_IMatcher
 	{
 		private Id toMatch;
 
@@ -923,12 +923,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The Id to be compared
 		 * @return fflib_MatcherDefinitions.SObjectWithId A new SObjectWithId instance
 		 */
-		public SObjectWithId(Id toMatch)
+		global SObjectWithId(Id toMatch)
 		{
 			this.toMatch = (Id)validateNotNull(toMatch);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof SObject)
 			{
@@ -943,7 +943,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * SObjectWithName matcher: checks if the supplied argument has the specified Name
 	 */
-	public class SObjectWithName implements fflib_IMatcher
+	global class SObjectWithName implements fflib_IMatcher
 	{
 		private String toMatch;
 
@@ -952,12 +952,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The name to be compared
 		 * @return fflib_MatcherDefinitions.SObjectWithName A new SObjectWithName instance
 		 */
-		public SObjectWithName(String toMatch)
+		global SObjectWithName(String toMatch)
 		{
 			this.toMatch = (String)validateNotNull(toMatch);
 		}
 
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			if (arg != null && arg instanceof SObject)
 			{
@@ -983,7 +983,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * StringContains matcher: checks if the supplied argument contains the specified substring
 	 */
-	public class StringContains implements fflib_IMatcher
+	global class StringContains implements fflib_IMatcher
 	{
 		private String toMatch;
 		
@@ -992,12 +992,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The substring to be compared
 		 * @return fflib_MatcherDefinitions.StringContains A new StringContains instance
 		 */
-		public StringContains(String toMatch)
+		global StringContains(String toMatch)
 		{
 			this.toMatch = (String)validateNotNull(toMatch);
 		}	
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof String ? ((String)arg).contains(toMatch) : false;
 		}
@@ -1006,7 +1006,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * StringEndsWith matcher: checks if the supplied argument ends with the specified substring
 	 */
-	public class StringEndsWith implements fflib_IMatcher
+	global class StringEndsWith implements fflib_IMatcher
 	{
 		private String toMatch;
 		
@@ -1015,12 +1015,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The substring to be compared
 		 * @return fflib_MatcherDefinitions.StringEndsWith A new StringEndsWith instance
 		 */
-		public StringEndsWith(String toMatch)
+		global StringEndsWith(String toMatch)
 		{
 			this.toMatch = (String)validateNotNull(toMatch);
 		}	
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof String ? ((String)arg).endsWith(toMatch) : false;
 		}
@@ -1029,9 +1029,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * StringIsBlank matcher: checks if the supplied argument is a blank String
 	 */
-	public class StringIsBlank implements fflib_IMatcher
+	global class StringIsBlank implements fflib_IMatcher
 	{		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg == null || (arg instanceof String ? String.isBlank((String)arg) : false);
 		}
@@ -1040,9 +1040,9 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * StringIsNotBlank matcher: checks if the supplied argument is a non-blank string
 	 */
-	public class StringIsNotBlank implements fflib_IMatcher
+	global class StringIsNotBlank implements fflib_IMatcher
 	{		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return (arg != NULL && arg instanceof String) ? String.isNotBlank((String)arg) : false;
 		}
@@ -1051,7 +1051,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * StringMatches matcher: checks if the supplied argument matches the specified regex expression
 	 */
-	public class StringMatches implements fflib_IMatcher
+	global class StringMatches implements fflib_IMatcher
 	{
 		private Pattern pat;
 		
@@ -1060,12 +1060,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The substring to be compared
 		 * @return fflib_MatcherDefinitions.StringMatches A new StringMatches instance
 		 */
-		public StringMatches(String regEx)
+		global StringMatches(String regEx)
 		{
 			this.pat = Pattern.compile((String)validateNotNull(regEx));
 		}	
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof String ? pat.matcher((String)arg).matches() : false;
 		}
@@ -1074,7 +1074,7 @@ public with sharing class fflib_MatcherDefinitions
 	/**
 	 * StringStartsWith matcher: checks if the supplied argument starts with the specified substring
 	 */
-	public class StringStartsWith implements fflib_IMatcher
+	global class StringStartsWith implements fflib_IMatcher
 	{
 		private String toMatch;
 		
@@ -1083,12 +1083,12 @@ public with sharing class fflib_MatcherDefinitions
 		 * @param toMatch The substring to be compared
 		 * @return fflib_MatcherDefinitions.StringStartsWith A new StringStartsWith instance
 		 */
-		public StringStartsWith(String toMatch)
+		global StringStartsWith(String toMatch)
 		{
 			this.toMatch = (String)validateNotNull(toMatch);
 		}	
 		
-		public Boolean matches(Object arg)
+		global Boolean matches(Object arg)
 		{
 			return arg != null && arg instanceof String ? ((String)arg).startsWith(toMatch) : false;
 		}
