@@ -8,7 +8,6 @@
 @isTest
 private class fflib_AnswerTest
 {
-
 	private static fflib_InvocationOnMock actualInvocation = null;
 
 	@isTest
@@ -326,7 +325,7 @@ private class fflib_AnswerTest
 			actualInvocation = invocation;
 
 			throw new fflib_ApexMocks.ApexMocksException('an error occurs on the execution of the answer');
-			return null;
+			//return null;
 		}
 	}
 
